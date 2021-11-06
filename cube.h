@@ -12,10 +12,13 @@ class Cube {
         vector<vector<char>> left;
         vector<vector<char>> right;
         vector<vector<char>> top;
-        vector<vector<char>> bottom;
+        vector<vector<char>> bot;
     
     public:
+    Cube();
+
     void printCube ();
+    void CubeScrambled(Cube*);
 
     void F ();
     void F_back ();
