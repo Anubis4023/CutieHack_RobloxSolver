@@ -130,29 +130,12 @@ void Cube::printBot () {
 
 void Cube::F () { //change in front affects everything except for back
 //Begin changing front face
-    //Save two positions
-    char temp1 = front[2][2];
-    char temp2 = front[1][2];
-    char temp3;
-    //move top layer to the right layer
-    front[0][2] = front[0][0];
-    front[1][2] = front[0][1];
-    front[2][2] = front[0][2];
+    rotate_helper(front);
 
-    //move left layer to the top layer
-    front[0][1] = front[1][0];
-    front[0][0] = front[2][0];
-
-    //move bottom layer to the left layer
-    front[1][0] = front[2][1];
-    front[2][0] = temp1;
-
-    //move right layer to the bottom layer
-    front[2][1] = temp2;
 //Begin changing the three other affected faces
-    temp1 = top[2][0];
-    temp2 = top[2][1];
-    temp3 = top[2][2];
+    char temp1 = top[2][0];
+    char temp2 = top[2][1];
+    char temp3 = top[2][2];
     //replace top top side with left left side
     top[2][0] = left[0][2];
     top[2][1] = left[1][2];
@@ -178,19 +161,64 @@ void Cube::F_back () {
 }
 
 void Cube::B () { //change in back affects everything except for front
-
+    //change in front affects everything except for back
+//Begin changing back face
+    rotate_helper(back);  
+//Begin changing the three other affected faces
+    char temp1 = top[0][0];
+    char temp2 = top[0][1];
+    char temp3 = top[0][2];
+    //replace top top side with left left side
+    top[0][0] = right[0][2];
+    top[0][1] = right[1][2];
+    top[0][2] = right[2][2];
+    //replace left left with bot bot side
+    right[0][2] = bot[2][2];
+    right[1][2] = bot[2][1];
+    right[2][2] = bot[2][0];
+    //replace bot bot side with right right side
+    bot[2][2] = left[2][0];
+    bot[2][1] = left[1][0];
+    bot[2][0] = left[0][0];
+    //replace right right with top top side
+    left[2][0] = temp1;
+    left[1][0] = temp2;
+    left[0][0] = temp3;
 }
 
 void Cube::B_back () {
-
+    B();
+    B();
+    B();
 }
 
 void Cube::L () { //change in left affects everything except for right
-
+//Begin changing left face
+    rotate_helper(left);
+//Begin changing the three other affected faces
+    char temp1 = top[0][0];
+    char temp2 = top[1][0];
+    char temp3 = top[2][0];
+    //replace top top side with left left side
+    top[0][0] = back[2][2];
+    top[1][0] = back[1][2];
+    top[2][0] = back[0][2];
+    //replace left left with bot bot side
+    back[0][2] = bot[2][0];
+    back[1][2] = bot[1][0];
+    back[2][2] = bot[0][0];
+    //replace bot bot side with right right side
+    bot[2][0] = front[2][0];
+    bot[1][0] = front[1][0];
+    bot[0][0] = front[0][0];
+    //replace right right with top top side
+    front[0][0] = temp1;
+    front[1][0] = temp2;
+    front[2][0] = temp3;
 }
 
 void Cube::L_back () {
-
+    L(); L(); L();
 }
 
 void Cube::R (){ //change in right affects everything but left
@@ -218,3 +246,25 @@ void Cube::D_back () {
 }
 
 //Add a catchall function to do the moves
+
+void Cube::rotate_helper(vector<vector<char>>& face) {
+//Save two positions
+    char temp1 = face[2][2];
+    char temp2 = face[1][2];
+
+    //move top layer to the right layer
+    face[2][2] = face[0][2];
+    face[1][2] = face[0][1];
+    face[0][2] = face[0][0];
+
+    //move left layer to the top layer
+    face[0][1] = face[1][0];
+    face[0][0] = face[2][0];
+
+    //move bottom layer to the left layer
+    face[1][0] = face[2][1];
+    face[2][0] = temp1;
+
+    //move right layer to the bottom layer
+    face[2][1] = temp2;
+}
