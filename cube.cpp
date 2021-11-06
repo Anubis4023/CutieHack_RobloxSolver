@@ -91,6 +91,7 @@ void Cube::printLeft () {
     cout << endl;
     return;
 }
+
 void Cube::printRight () {
     cout << "Printing Right" << endl;
     for (int i = 0; i < 3; ++i) {
@@ -102,6 +103,7 @@ void Cube::printRight () {
     cout << endl;
     return;
 }
+
 void Cube::printTop () {
     cout << "Printing Top" << endl;
     for (int i = 0; i < 3; ++i) {
@@ -127,11 +129,52 @@ void Cube::printBot () {
 }
 
 void Cube::F () { //change in front affects everything except for back
+//Begin changing front face
+    //Save two positions
+    char temp1 = front[2][2];
+    char temp2 = front[1][2];
+    char temp3;
+    //move top layer to the right layer
+    front[0][2] = front[0][0];
+    front[1][2] = front[0][1];
+    front[2][2] = front[0][2];
 
+    //move left layer to the top layer
+    front[0][1] = front[1][0];
+    front[0][0] = front[2][0];
+
+    //move bottom layer to the left layer
+    front[1][0] = front[2][1];
+    front[2][0] = temp1;
+
+    //move right layer to the bottom layer
+    front[2][1] = temp2;
+//Begin changing the three other affected faces
+    temp1 = top[2][0];
+    temp2 = top[2][1];
+    temp3 = top[2][2];
+    //replace top top side with left left side
+    top[2][0] = left[0][2];
+    top[2][1] = left[1][2];
+    top[2][2] = left[2][2];
+    //replace left left with bot bot side
+    left[0][2] = bot[0][0];
+    left[1][2] = bot[0][1];
+    left[2][2] = bot[0][2];
+    //replace bot bot side with right right side
+    bot[0][0] = right[2][0];
+    bot[0][1] = right[1][0];
+    bot[0][2] = right[0][0];
+    //replace right right with top top side
+    right[0][0] = temp1;
+    right[1][0] = temp2;
+    right[2][0] = temp3;
 }
 
 void Cube::F_back () { 
-
+    F();
+    F();
+    F();
 }
 
 void Cube::B () { //change in back affects everything except for front
@@ -174,3 +217,4 @@ void Cube::D_back () {
 
 }
 
+//Add a catchall function to do the moves
