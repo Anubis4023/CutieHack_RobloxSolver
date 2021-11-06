@@ -3,5 +3,7 @@
 
 int main()
 {
-    cout << "Hello world" << endl;
-}
+    Cube* rubik = new Cube();
+
+    rubik->printCube();
+} 

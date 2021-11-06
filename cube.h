@@ -2,6 +2,7 @@
 #define CUBE_H
 
 #include <vector>
+#include <iostream>
 
 using namespace std;
 
@@ -13,11 +14,19 @@ class Cube {
         vector<vector<char>> right;
         vector<vector<char>> top;
         vector<vector<char>> bot;
+
     
     public:
     Cube();
 
     void printCube ();
+    void printFront ();
+    void printBack ();
+    void printLeft ();
+    void printRight ();
+    void printTop ();
+    void printBot ();
+
     void CubeScrambled(Cube*);
 
     void F ();
