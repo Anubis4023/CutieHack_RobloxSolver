@@ -100,6 +100,9 @@ void Cube::printRight () {
         }
         cout << endl;
     }
+    if (right.at(0).at(0) == 'B') {
+        cout << "ERROR" << endl;
+    }
     cout << endl;
     return;
 }
@@ -131,15 +134,21 @@ void Cube::printBot () {
 void Cube::F () { //change in front affects everything except for back
 //Begin changing front face
     rotate_helper(front);
+    if (right[0][0] == 'B') {
+        cout << "ERROR" << endl;
+    }
 
 //Begin changing the three other affected faces
     char temp1 = top[2][0];
     char temp2 = top[2][1];
     char temp3 = top[2][2];
+    if (temp1 == 'B') {
+        cout << "MAJORERROR2" << endl;
+    }
     //replace top top side with left left side
-    top[2][0] = left[0][2];
+    top[2][0] = left[2][2];
     top[2][1] = left[1][2];
-    top[2][2] = left[2][2];
+    top[2][2] = left[0][2];
     //replace left left with bot bot side
     left[0][2] = bot[0][0];
     left[1][2] = bot[0][1];
