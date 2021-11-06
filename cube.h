@@ -7,7 +7,7 @@ using namespace std;
 
 class Cube {
     private:
-        vector<vector<char>> errorchangeotfront;
+        vector<vector<char>> front;
         vector<vector<char>> back;
         vector<vector<char>> left;
         vector<vector<char>> right;
