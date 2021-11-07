@@ -5,14 +5,14 @@ int main()
 {
     Cube* rubik = new Cube();
 
-    rubik->F();
-    rubik->B();
-    rubik->L();
-    rubik->R();
-    rubik->U();
-    rubik->D();
-    rubik->L_back();
-    rubik->R_back();
+    for (int i = 0; i < 3; ++i) {
+    rubik->F(); //front
+    rubik->B(); //back
+    rubik->L(); //left
+    rubik->R(); //right
+    rubik->U(); //top
+    rubik->D(); //bottom
+    }
     rubik->printCube();
     
 } 

@@ -340,3 +340,25 @@ void Cube::rotate_helper(vector<vector<char>>& face) {
     //move right layer to the bottom layer
     face[2][1] = temp2;
 }
+
+void Cube::rotate_helperY(vector<vector<char>>& face) {
+    //Save two positions
+    char temp1 = face[0][2];
+    char temp2 = face[1][2];
+
+    //move bot layer to the right layer
+    face[0][2] = face[2][2];
+    face[1][2] = face[2][1];
+    face[2][2] = face[2][0];
+
+    //move left layer to the bot layer
+    face[2][1] = face[1][0];
+    face[2][0] = face[0][0];
+
+    //move top layer to the left layer
+    face[1][0] = face[0][1];
+    face[0][0] = temp1;
+
+    //move right layer to the bottom layer
+    face[0][1] = temp2;
+}

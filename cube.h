@@ -43,6 +43,7 @@ class Cube {
     void D_back ();
 
     void rotate_helper(vector<vector<char>>&);
+    void rotate_helperY(vector<vector<char>>&);
 };
 
 #endif
