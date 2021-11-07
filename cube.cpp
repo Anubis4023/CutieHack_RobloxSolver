@@ -231,11 +231,32 @@ void Cube::L_back () {
 }
 
 void Cube::R (){ //change in right affects everything but left
-
+//Begin changing left face
+    rotate_helper(right);
+//Begin changing the three other affected faces
+    char temp1 = top[2][2];
+    char temp2 = top[1][2];
+    char temp3 = top[0][2];
+    //replace top top side with left left side
+    top[2][2] = front[2][2];
+    top[1][2] = front[1][2];
+    top[0][2] = front[0][2];
+    //replace left left with bot bot side
+    front[2][2] = bot[2][2];
+    front[1][2] = bot[1][2];
+    front[0][2] = bot[0][2];
+    //replace bot bot side with right right side
+    bot[2][2] = back[0][0];
+    bot[1][2] = back[1][0];
+    bot[0][2] = back[2][0];
+    //replace right right with top top side
+    back[0][0] = temp1;
+    back[1][0] = temp2;
+    back[2][0] = temp3;
 }
 
 void Cube::R_back() {
-
+    R(); R(); R();
 }
 
 void Cube::U () { //change in up affects everything but bot

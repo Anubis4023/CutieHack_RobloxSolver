@@ -7,14 +7,11 @@ int main()
 
     rubik->F();
     rubik->L();
-    //rubik->B_back();
-    rubik->F_back();
-    rubik->L();
-    rubik->B();
-    rubik->L_back();
+    rubik->R();
+    rubik->R();
     rubik->F_back();
     rubik->B_back();
-    //rubik->L_back();
+    rubik->L_back();
     rubik->printCube();
     
 } 
