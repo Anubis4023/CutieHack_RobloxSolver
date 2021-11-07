@@ -6,12 +6,13 @@ int main()
     Cube* rubik = new Cube();
 
     rubik->F();
+    rubik->B();
     rubik->L();
     rubik->R();
-    rubik->R();
-    rubik->F_back();
-    rubik->B_back();
+    rubik->U();
+    rubik->D();
     rubik->L_back();
+    rubik->R_back();
     rubik->printCube();
     
 } 

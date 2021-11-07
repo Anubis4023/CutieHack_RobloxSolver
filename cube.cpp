@@ -260,22 +260,64 @@ void Cube::R_back() {
 }
 
 void Cube::U () { //change in up affects everything but bot
-
+//Begin changing left face
+    rotate_helper(top);
+//Begin changing the three other affected faces
+    char temp1 = back[0][0];
+    char temp2 = back[0][1];
+    char temp3 = back[0][2];
+    //replace top top side with left left side
+    back[0][0] = left[0][0];
+    back[0][1] = left[0][1];
+    back[0][2] = left[0][2];
+    //replace left left with bot bot side
+    left[0][0] = front[0][0];
+    left[0][1] = front[0][1];
+    left[0][2] = front[0][2];
+    //replace bot bot side with right right side
+    front[0][0] = right[0][0];
+    front[0][1] = right[0][1];
+    front[0][2] = right[0][2];
+    //replace right right with top top side
+    right[0][0] = temp1;
+    right[0][1] = temp2;
+    right[0][2] = temp3;
 }
 
 void Cube::U_back () {
-
+    U(); U(); U();
 }
 
 void Cube::D () { //change in bot affects everything but top
-
+//Begin changing left face
+    rotate_helper(bot);
+//Begin changing the three other affected faces
+    char temp1 = front[2][0];
+    char temp2 = front[2][1];
+    char temp3 = front[2][2];
+    //replace top top side with left left side
+    front[2][0] = left[2][0];
+    front[2][1] = left[2][1];
+    front[2][2] = left[2][2];
+    //replace left left with bot bot side
+    left[2][0] = back[2][0];
+    left[2][1] = back[2][1];
+    left[2][2] = back[2][2];
+    //replace bot bot side with right right side
+    back[2][0] = right[2][0];
+    back[2][1] = right[2][1];
+    back[2][2] = right[2][2];
+    //replace right right with top top side
+    right[2][0] = temp1;
+    right[2][1] = temp2;
+    right[2][2] = temp3;
 }
 
 void Cube::D_back () {
-
+    D(); D(); D();
 }
 
-//Add a catchall function to do the moves
+//Add functions to do combos of moves
 
 void Cube::rotate_helper(vector<vector<char>>& face) {
 //Save two positions
